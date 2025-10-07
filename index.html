@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Descifrar Código</title>
+<style>
+  body {
+    background: #000;
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+    text-align: center;
+    padding-top: 100px;
+  }
+  input {
+    padding: 10px;
+    font-size: 20px;
+    width: 150px;
+    text-align: center;
+    background: #111;
+    color: #0f0;
+    border: 1px solid #0f0;
+    border-radius: 4px;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-left: 10px;
+    background: #0f0;
+    border: none;
+    color: #000;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  #resultado {
+    margin-top: 30px;
+    font-size: 22px;
+  }
+</style>
+</head>
+<body>
+
+<h1>🔢 Descifrar Código</h1>
+<input type="text" id="codigo" placeholder="Código cifrado">
+<button onclick="descifrar()">Descifrar</button>
+
+<div id="resultado"></div>
+
+<script>
+function descifrar() {
+  const clave = 7; // Clave fija del escape room
+  let codigo = document.getElementById('codigo').value.trim();
+  if (!/^[0-9]+$/.test(codigo)) {
+    document.getElementById('resultado').innerText = "⚠️ Solo se permiten números.";
+    return;
+  }
+
+  let resultado = "";
+  for (let i = 0; i < codigo.length; i++) {
+    let num = parseInt(codigo[i]);
+    resultado += (num - clave + 10) % 10; // descifrado simple
+  }
+
+  document.getElementById('resultado').innerText = "🔓 Código descifrado: " + resultado;
+}
+</script>
+
+</body>
+</html>
+
